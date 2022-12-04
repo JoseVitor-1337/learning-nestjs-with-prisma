@@ -16,4 +16,11 @@ export class PrismaService extends PrismaClient {
 
     super(primaclientOptions)
   }
+
+  async cleanDatabase() {
+    return await this.$transaction([
+      this.bookMark.deleteMany(),
+      this.user.deleteMany()
+    ])
+  }
 }

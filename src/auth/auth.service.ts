@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from '../prisma/prisma.service'
 import { IAuthDTO, ICredentialsDTO } from './dto'
 import * as argon from 'argon2'
 
@@ -12,6 +12,7 @@ export class AuthService {
     private jwt: JwtService,
     private config: ConfigService
   ) {}
+
   async signup(dto: IAuthDTO) {
     const hash = await argon.hash(dto.password)
 
@@ -28,34 +29,28 @@ export class AuthService {
       return this.signToken(user.id, user.email)
     } catch (error) {
       if (error.code === 'P2002') {
-        return {
-          statusCode: 401,
-          message: 'Estas credenciais já estão em uso'
-        }
+        throw new BadRequestException('Estas credenciais já estão em uso')
       }
+
+      throw error
     }
   }
 
   async signin(dto: ICredentialsDTO) {
-    const credentialsErrorMessage = 'Credenciais inválidas'
-
     try {
       const user = await this.prisma.user.findFirst({
         where: { email: dto.email }
       })
 
-      if (!user) throw new Error(credentialsErrorMessage)
+      if (!user) throw new BadRequestException('Email errado')
 
       const passwordMatches = await argon.verify(user.password, dto.password)
 
-      if (!passwordMatches) throw new Error(credentialsErrorMessage)
+      if (!passwordMatches) throw new BadRequestException('Password errado')
 
       return this.signToken(user.id, user.email)
     } catch (error) {
-      return {
-        statusCode: 400,
-        message: error.message
-      }
+      throw error
     }
   }
 
