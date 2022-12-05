@@ -2,7 +2,7 @@ import { Controller, Body, Get, Patch, UseGuards } from '@nestjs/common'
 
 import { IUser, User } from '../auth/decorator'
 import { JwtGuard } from '../auth/guard'
-import { EditUserDtio } from './dto'
+import { EditUserDto } from './dto'
 import { UserService } from './user.service'
 
 @UseGuards(JwtGuard)
@@ -26,7 +26,7 @@ export class UserController {
   }
 
   @Patch()
-  async editUser(@User('id') userId: number, @Body() dto: EditUserDtio) {
+  async editUser(@User('id') userId: number, @Body() dto: EditUserDto) {
     return await this.userService.editUser(userId, dto)
   }
 }
