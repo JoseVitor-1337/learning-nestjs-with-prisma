@@ -21,11 +21,11 @@ export class UserController {
   }
 
   @Get(':id')
-  async getUserById(@User('') userId: number): Promise<IUser> {
+  async getUserById(@User('id') userId: number): Promise<IUser> {
     return await this.userService.getUserById(userId)
   }
 
-  @Patch()
+  @Patch(':id')
   async editUser(@User('id') userId: number, @Body() dto: EditUserDto) {
     return await this.userService.editUser(userId, dto)
   }
