@@ -11,8 +11,18 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('me')
-  getMe(@User() user: IUser) {
-    return { user }
+  async getMe(@User() user: IUser): Promise<IUser> {
+    return user
+  }
+
+  @Get('')
+  async getUsers(): Promise<IUser[]> {
+    return await this.userService.getUsers()
+  }
+
+  @Get(':id')
+  async getUserById(@User('') userId: number): Promise<IUser> {
+    return await this.userService.getUserById(userId)
   }
 
   @Patch()

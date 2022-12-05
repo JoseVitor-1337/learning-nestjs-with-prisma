@@ -20,4 +20,24 @@ export class UserService {
       throw error
     }
   }
+
+  async getUsers() {
+    try {
+      const users = await this.prisma.user.findMany()
+
+      return users
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async getUserById(userId: number) {
+    try {
+      const user = await this.prisma.user.findFirst({ where: { id: userId } })
+
+      return user
+    } catch (error) {
+      throw error
+    }
+  }
 }
