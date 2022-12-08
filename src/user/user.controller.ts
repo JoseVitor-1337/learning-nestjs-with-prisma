@@ -1,4 +1,12 @@
-import { Controller, Body, Get, Patch, UseGuards } from '@nestjs/common'
+import {
+  ParseIntPipe,
+  Param,
+  Controller,
+  Body,
+  Get,
+  Patch,
+  UseGuards
+} from '@nestjs/common'
 
 import { IUser, User } from '../auth/decorator'
 import { JwtGuard } from '../auth/guard'
@@ -21,11 +29,13 @@ export class UserController {
   }
 
   @Get(':id')
-  async getUserById(@User('id') userId: number): Promise<IUser> {
+  async getUserById(
+    @Param('id', ParseIntPipe) userId: number
+  ): Promise<void | IUser> {
     return await this.userService.getUserById(userId)
   }
 
-  @Patch(':id')
+  @Patch('')
   async editUser(@User('id') userId: number, @Body() dto: EditUserDto) {
     return await this.userService.editUser(userId, dto)
   }

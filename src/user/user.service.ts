@@ -15,7 +15,7 @@ export class UserService {
     return this.userRepository.findMany()
   }
 
-  async getUserById(userId: number): Promise<User> {
+  async getUserById(userId: number): Promise<void | User> {
     return this.userRepository.findOneById(userId)
   }
 }

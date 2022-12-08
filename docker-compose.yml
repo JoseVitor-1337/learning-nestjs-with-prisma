@@ -7,7 +7,7 @@ services:
     ports:
       - 5434:5432
     env_file:
-      - ../.env
+      - ./.env
     networks:
       - freecodecamp
   test-db:
@@ -16,7 +16,7 @@ services:
     ports:
       - 5435:5432
     env_file:
-      - ../.env
+      - ./.env.test
     networks:
       - freecodecamp
 networks:

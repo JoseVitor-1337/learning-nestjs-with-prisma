@@ -1,15 +1,15 @@
 import { User } from '@prisma/client'
 
-type ICustomUser = {
+type IPartialUser = {
   firstName?: string
   lastName?: string
   email?: string
   password?: string
 }
 
-export const userStub = (customFields: ICustomUser = {}): User => {
+export const userStub = (customFields: IPartialUser = {}): User => {
   const generatedUser = {
-    id: 1,
+    id: 1000,
     firstName: 'José',
     lastName: 'Vitor',
     email: 'Josevitor@gmail.com',

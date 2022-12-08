@@ -35,7 +35,6 @@ describe('UsersController', () => {
       })
 
       it('then should call by userService', () => {
-        console.log('userService', userService)
         expect(userService.getUserById).toBeCalledWith(userStub().id)
       })
 
