@@ -27,6 +27,18 @@ Install all dependencies for this the client
   npm install
 ```
 
+You must run the docker commando to start postgre database to connect to the application
+
+```
+  npm run dev-db:restart
+```
+
+Now use prisma migrate to generate the tables into the database
+
+```
+  npm run prisma:dev:deploy
+```
+
 Now you start the server:
 
 ```
