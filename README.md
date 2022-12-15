@@ -4,15 +4,11 @@
 
 ![Badge projeto concluido](https://img.shields.io/badge/Status-Projeto%20concluido-blue)
 
-<br />
-
 ## Technologies used
 
 - [Nest.js](https://nodejs.org/en/)
 - [Prisma](https://www.prisma.io/)
 - [Typescript](https://www.typescriptlang.org/)
-
-<br />
 
 ## Required installation to use
 
@@ -22,7 +18,6 @@
 
 > Need have **git** installed [Go Here to install](https://git-scm.com/downloads)
 
-<br />
 
 ## Usage
 
