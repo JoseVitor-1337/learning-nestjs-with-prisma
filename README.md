@@ -27,7 +27,7 @@ Install all dependencies for this the client
   npm install
 ```
 
-You must run the docker commando to start postgre database to connect to the application
+You must run the docker command to start postgre database to connect to the application
 
 ```
   npm run dev-db:restart
