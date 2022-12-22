@@ -9,6 +9,7 @@
 - [Nest.js](https://nodejs.org/en/)
 - [Prisma](https://www.prisma.io/)
 - [Typescript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
 
 ## Required installation to use
 
